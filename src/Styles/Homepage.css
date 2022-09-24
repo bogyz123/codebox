@@ -1,0 +1,29 @@
+#home {
+    display: flex;
+}
+
+#search {
+    flex-grow: 1;
+}
+
+
+@media screen and (max-width: 1200px) {
+    #home {
+        background-color: red;
+        flex-direction: column;
+    }
+
+    #home #first {
+        order: 3;
+    }
+
+    #title {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid black;
+    }
+
+    #title .info-container {
+        margin-top: 5px;
+    }
+}
