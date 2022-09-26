@@ -1,1 +1,4 @@
-- [ ] x
+- [x] Add password locking feature
+- [ ] Add environment table variables to hide API
+- [ ] Add search by tag feature
+- [x] Display link to paste after creating
