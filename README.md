@@ -2,3 +2,4 @@
 - [ ] Add environment table variables to hide API
 - [ ] Add search by tag feature
 - [x] Display link to paste after creating
+- [ ] Create an API to make & retrieve pastes
