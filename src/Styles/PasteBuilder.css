@@ -1,59 +1,87 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 
-*{
+* {
     font-family: 'Roboto Mono', monospace;
 
 }
-#information{
+
+#information {
     position: relative;
 }
-#greeting{
+
+#greeting {
     background-color: rgb(29, 29, 29);
-    color:white;
-    
-    
+    color: white;
+
+
 
 }
 
-#title{
+#title {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     width: 100%;
     grid-column-gap: 4px;
-    
+
 }
-.info-container
-{
+
+.info-container {
     display: flex;
     flex-direction: column;
     text-align: center;
 }
+
 #information input {
     margin-left: 5px;
 
 }
-#container{
+
+#container {
     border: '10px solid red';
 }
 
-#body{
+#body {
     display: flex;
     justify-content: center;
     flex-direction: column;
 }
+
 #body input {
     min-height: 20vh;
 }
-textarea{
+
+textarea {
     max-width: 650px;
     max-height: 450px;
     min-width: 250px;
     min-height: 125px;
 }
-#success-status{
+
+#success-status {
     margin-top: 5px;
 }
-#content-box{
-    height: 30vh;
+
+#content-box {
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-#content-box #in{height: 20vh;}
+
+#in {
+    border-radius: 5px;
+    margin: auto;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 20px;
+}
+
+.copy-open {
+    color: orange;
+    cursor: pointer;
+
+}
+
+
+.copy-open:hover {
+    color: orangered;
+}

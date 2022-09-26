@@ -9,11 +9,11 @@ import "../Styles/RecentPastes.css";
 import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 
 
-function RecentPastes() {
+function RecentPastes(props) {
 
     const [currentQuery, setCurrentQuery] = useState(null);
     const [queryResult, setQueryResult] = useState()
-    const [searchCategory, setSearchCategory] = useState('titlse');
+    const [searchCategory, setSearchCategory] = useState('title');
 
     // Ovo je page za searchovanje za pasteove, popraviti CSS i dodati responsiveness. Popraviti bug sa onChange eventom. 
 
@@ -44,20 +44,25 @@ function RecentPastes() {
     }, [currentQuery])
     const handler = (e) => {
         setCurrentQuery(e.target.value);
+    
     }
 
     return (
-        <Dialog header="Search for pastes" id='box' height='100vh'>
+        <Dialog header="Search for pastes"  id='box' height='100vh'>
             <div>
-                <TextField fullWidth type="text" size='small' variant='outlined' color='success' label='Search...' InputLabelProps={{ style: { color: 'green', fontFamily: 'Montserrat, sans-serif' } }} InputProps={{ style: { color: 'green', fontFamily: 'Montserrat, sans-serif' } }} onChange={handler} />
+                <div id='textfield-container'>
+                    <TextField fullWidth type="text" size='small' variant='outlined' color='success' label='Search...' InputLabelProps={{ style: { color: 'green', fontFamily: 'Montserrat, sans-serif' } }} InputProps={{ style: { color: 'green', fontFamily: 'Montserrat, sans-serif' } }} onChange={handler} />
+                </div>
 
-                <FormControl fullWidth style={{ backgroundColor: 'rgb(29,29,29' }} sx={{ marginTop: '10px' }}>
-                    <InputLabel style={{ backgroundColor: 'rgb(29,29,29', color: 'rgb(17, 199, 99)', fontFamily:'Montserrat, sans-serif' }} id="demo-simple-select-label">Category</InputLabel>
+
+                <FormControl fullWidth style={{ backgroundColor: 'rgb(29,29,29' }} sx={{ marginTop: '5px' }}>
+                    <InputLabel style={{ backgroundColor: 'rgb(29,29,29', color: 'rgb(17, 199, 99)', fontFamily: 'Montserrat, sans-serif' }} id="demo-simple-select-label">Category</InputLabel>
                     <Select
                         value={searchCategory}
+
                         label="Search by"
                         onChange={(e) => setSearchCategory(e.target.value)}
-                        style={{ color: 'rgb(17,199,99)', fontFamily:'Montserrat,' }}
+                        style={{ color: 'rgb(17,199,99)', fontFamily: 'Montserrat,' }}
 
                     >
                         <MenuItem value='title'>Title</MenuItem>
@@ -68,8 +73,8 @@ function RecentPastes() {
             </div>
 
             {<><p>Search Results: </p><div id='status'>Nothing found.</div></>}
+            <p style={{color:'orange'}}>Made by Bogdan :D</p>
         </Dialog>
-
     )
 }
 function ShowResults(props) {
@@ -98,7 +103,7 @@ function Result(props) {
 
     }
     return (
-        <Container style={styles} id='result' onClick={() => window.location.href = '/&paste=' + props.refer}>
+        <Container style={styles} id='result' onClick={() => window.location.href = '?/&paste=' + props.refer}>
 
             {props.index} {'|'} {props.title}
             <div>{props.children}</div>

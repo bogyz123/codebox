@@ -1,0 +1,16 @@
+#pasteContainer {
+    display: flex;
+    column-gap: 5px;
+    border:1px solid red;
+}
+
+
+@media screen and (max-width: 900px) {
+    #pasteContainer {
+        flex-direction: column-reverse;
+    }
+    #recent-pastes, #pastes{
+        display: none;
+    }
+
+}
