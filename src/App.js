@@ -1,63 +1,65 @@
-
-import Homepage from "./components/Homepage";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
+import { useEffect, useLayoutEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import React, { useEffect, useState } from "react";
-import RecentPastes, { ShowResults } from "./components/RecentPastes";
-import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
-import { database } from "./components/Connection";
-import Paste from "./components/Paste";
-import ReactDOM from "react-dom";
-import Page404 from "./components/Page404";
-import PasswordScreen from "./components/PasswordScreen";
+import AllPastes from "./components/AllPastes";
+import { database, useAuth } from "./components/Connection";
+import Homepage from "./components/Homepage";
+import Login from "./components/Login";
+import Navbar from "./components/Navbar";
+import { setPasteObject } from "./components/PasteSlice";
+import PasteTemplate from "./components/PasteTemplate";
+import Profile from "./components/Profile";
+import Register from "./components/Register";
+import { setIsLoggedIn, setNickname, setUserData, setUserObject } from "./components/UserSlice";
+
 
 
 function App() {
+  // #region UserData
+  const auth = getAuth();
+  const isLoggedIn = useSelector((state) => state.UserSlice.isLoggedIn);
+  const userObject = useSelector((state) => state.UserSlice.userObject);
+  const dispatch = useDispatch();
+  const email = useSelector((state) => state.UserSlice.email);
+  // #endregion
 
-  useEffect(() => {
-    var params = new URLSearchParams(window.location.href);
-    if (params.has("paste")) {
-      let value = params.get("paste");
-      if (value === null || value == "") {
-        ReactDOM.render(<Page404 />, document.getElementById("root"));
-        return;
+  useEffect(() => {        // Whenever the user logs in our out, we check it and set data accordingly.
+                           // Kada se korisnik uloguje/izloguje, postavljamo podatke u zavisnosti.
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        dispatch(setIsLoggedIn(true));
+        localStorage.setItem('codebox_email', user.email);
+
+        const userReference = doc(database, "users", user.email);
+        getDoc(userReference).then((documentSnapshot) => { // When page loads, get snapshot of pastes.
+          dispatch(setPasteObject(documentSnapshot.get("pastes"))); // Set the pastes parent to pasteObject
+        })
       }
       else {
-        let fetch = async () => {
-
-          const ref = doc(database, "pastes", value);
-          const snap = await getDoc(ref);
-          let pw = snap.get("password");
-
-          if (snap.get("author") == null || snap.get("author") == "") {
-            ReactDOM.render(<Page404 />, document.getElementById("root"));
-            return;
-          }
-
-          if (pw == "" || pw === undefined) {
-            ReactDOM.render(<Paste title={snap.get("title")} author={snap.get("author")} />, document.getElementById("root"));
-          }
-          else {
-            ReactDOM.render(<PasswordScreen docID={value} />, document.getElementById("root"));
-          }
-
-
-
-        }
-        fetch();
+        dispatch(setIsLoggedIn(false));
       }
-    }
-  }, [window.location.href])
-
+    })
+  }, [])
+  const logout = () => {
+    signOut(auth);
+  }
   return (
-    <>
-    
-
-        <Homepage/>
-
-
-    </>
-
-   
+    <BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route path='/' element={
+          isLoggedIn ? <Homepage /> : <Login />
+        } />
+        <Route path='login' element={<Login />} />
+        <Route path='register' element={<Register />} />
+        <Route path='*' element={<div>That page doesn't exist.</div>} />
+        <Route path='/user/:userID' element={< Profile />} />
+        <Route path='/paste/:pasteID' element={< PasteTemplate />} />
+        <Route path='all-pastes' element={<AllPastes />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
