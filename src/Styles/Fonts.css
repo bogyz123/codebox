@@ -1,11 +1,1 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-:root{
-    --mont: font-family: 'Montserrat', sans-serif;
-
-}
-.neue{
-    font-family: 'Bebas Neue', cursive;
-
-}

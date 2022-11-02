@@ -1,29 +1,14 @@
-#home {
+#homepage {
+    background-color: rgb(13, 0, 24);
+    height: 94.5vh;
     display: flex;
+    flex-direction: column;
 }
 
-#search {
-    flex-grow: 1;
+body {
+    overflow: hidden;
 }
 
-
-@media screen and (max-width: 1200px) {
-    #home {
-        background-color: red;
-        flex-direction: column;
-    }
-
-    #home #first {
-        order: 3;
-    }
-
-    #title {
-        display: flex;
-        flex-direction: column;
-        border: 1px solid black;
-    }
-
-    #title .info-container {
-        margin-top: 5px;
-    }
+* {
+    box-sizing: border-box;
 }

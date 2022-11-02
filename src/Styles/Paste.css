@@ -1,16 +1,7 @@
-#pasteContainer {
+#paste-container {
     display: flex;
-    column-gap: 5px;
-    border:1px solid red;
-}
-
-
-@media screen and (max-width: 900px) {
-    #pasteContainer {
-        flex-direction: column-reverse;
-    }
-    #recent-pastes, #pastes{
-        display: none;
-    }
-
+    background-color: rgb(40,40,40);
+    flex-direction: column;
+    font-family: 'Roboto Condensed';
+    border-bottom: 1px solid rgb(194, 14, 14);
 }

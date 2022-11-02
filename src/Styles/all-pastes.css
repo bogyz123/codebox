@@ -1,0 +1,63 @@
+#all-pastes {
+    font-family: 'Roboto Condensed';
+    letter-spacing: 0.95px;
+    color:#fff;
+
+}
+html {
+    background-color: rgb(25, 25, 25);
+}
+.center {
+    text-align: center;
+}
+
+#amount {
+    color: orange;
+}
+
+.lock-status {
+    display: flex;
+    align-items: center;
+}
+
+#paste-actions {
+    display: flex;
+    column-gap: 5px;
+}
+
+#form {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    text-align: center;
+    width: max-content;
+    gap: 5px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 40px 15px 40px 15px;
+    margin: auto;
+    background-color: rgb(17,17,17);
+    color:#fff;
+}
+
+#content {
+    grid-column: 1 / span 2;
+    max-height: 500px;
+    overflow: auto;
+}
+#edit-button {
+    grid-column: 1 / span 2;
+}
+
+#app-bar {
+    background-color: rgb(25, 25, 25);
+    display: grid;
+    grid-template-columns: 96% 4%;
+    justify-content: center;
+    align-items: center;
+}
+
+#close-dialog {
+    cursor: pointer;
+    width: fit-content;
+    height: fit-content;
+}
