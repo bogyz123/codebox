@@ -1,0 +1,129 @@
+import styled from "@emotion/styled";
+import { Alert, Button, Input, Paper, Snackbar, TextField } from "@mui/material";
+import { current } from "@reduxjs/toolkit";
+import { getAuth } from "firebase/auth";
+import { addDoc, collection, doc, Firestore, getDoc, query, serverTimestamp, setDoc, where } from "firebase/firestore";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import "../styles/CreatePaste.css";
+import { database } from "./Connection";
+import { setPasteAuthor, setPasteContent, setPasteTitle } from "./PasteSlice";
+import TextFieldStyled from "./TextFieldStyled";
+import { setPastes, setUserData } from "./UserSlice";
+import { randomName } from "./Connection";
+import { useNavigate } from "react-router-dom";
+
+
+
+export default function CreatePaste() { // Component that handles creation of the paste, provides textfields and submit button.
+    // Homepage komponenta kada smo ulogovani, handluje pravljenje paste-a
+
+    // #region 
+    const [isNull, setIsNull] = useState();
+    const [successful, setSuccessful] = useState();
+    const PaperStyle = styled(Paper)(({ theme }) => ({
+        color: '#fff',
+        backgroundColor: 'rgb(32,32,32)',
+        padding: '15px 5px 15px 0px',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        width: '99%',
+        justifyContent: 'center',
+        alignItems: 'center',
+
+
+    }))
+    const robotoCondensedFont = 'Roboto Condensed, sans-serif';
+    // #endregion
+    const dispatch = useDispatch();
+    const auth = getAuth();
+    const [title, setTitle] = useState();
+    const [author, setAuthor] = useState();
+    const [content, setContent] = useState();
+    const [pasteError, setPasteError] = useState();
+    const [pasteSuccess, setPasteSuccess] = useState();
+    const [link, setLink] = useState();
+    const [password, setPassword] = useState();
+    const nav = useNavigate();
+
+    const randomPasteName = () => {
+        const possibilities = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'A', 'Z'];
+        var word = "";
+        for (let i = 0; i < 12; i++) {
+            const randomLetter = possibilities[Math.floor((Math.random() * possibilities.length))];
+            word += randomLetter;
+        }
+        return word;
+    }
+    const upload = async () => {
+        setPasteError(false);
+        setPasteSuccess(false);
+        if (title === "" || content === "" || author === "" || title === null || title === undefined || content === null || content === undefined || author === null || author === undefined) {
+            setPasteError(true);
+            return;
+        }
+
+        let randomID = randomPasteName();
+
+
+        if (password != undefined && password != "") {
+            await setDoc(doc(database, "users", auth.currentUser.email), { pastes: { [randomID.toString()]: { title: title, content: content, author: author, name: randomID, password: password, createdAt: serverTimestamp() } } }, { merge: true });
+            await setDoc(doc(database, "pastes", randomID.toString()), { title: title, content: content, author: author, name: randomID, password: password }, { merge: true });
+        }
+        else {
+            await setDoc(doc(database, "users", auth.currentUser.email), { pastes: { [randomID.toString()]: { title: title, content: content, author: author, name: randomID, createdAt: serverTimestamp() } } }, { merge: true });
+            await setDoc(doc(database, "pastes", randomID.toString()), { title: title, content: content, author: author, name: randomID }, { merge: true });
+        }
+
+
+        setLink(randomID);
+        setPasteSuccess(true);
+        setPasteError(false);
+        localStorage.setItem("codebox_mypastes",);
+
+    }
+
+
+
+
+    return (
+
+        <div id='container'>
+
+            <h3 id='header'>Create a new paste</h3>
+            <div id='paste-info'>
+                <TextField size='small' inputProps={{ style: { color: '#fff', fontFamily: robotoCondensedFont} }} InputLabelProps={{ style: { color: 'grey', fontFamily: robotoCondensedFont } }} color='warning' required label="Author" onChange={(e) => setAuthor(e.target.value)}></TextField>
+                <TextField size='small' inputProps={{ style: { color: '#fff', fontFamily: robotoCondensedFont } }} InputLabelProps={{ style: { color: 'grey', fontFamily: robotoCondensedFont } }} label="Title" required color='warning' onChange={(e) => setTitle(e.target.value)}></TextField>
+                <TextField size='small' inputProps={{ style: { color: '#fff', fontFamily: robotoCondensedFont } }} InputLabelProps={{ style: { color: 'grey', fontFamily: robotoCondensedFont } }} label="Password" color='warning' type='password' onChange={(e) => setPassword(e.target.value)}></TextField>
+                <div id='status'>
+                    {pasteError && <Alert severity="warning">Please input all the fields.</Alert>}
+                    {pasteSuccess && <>
+
+                        <Button variant='contained' color='success' onClick={() => nav(`/paste/${link}`)}>Open Link</Button>
+                    </>}
+                </div>
+
+
+
+            </div>
+
+            <div id='paste-box-container'>
+
+                <textarea id='paste-box' onChange={(e) => setContent(e.target.value)} value={content}></textarea>
+                <Button variant='contained' sx={{ width: '95%', marginTop: '10px' }} color='warning' onClick={() => upload()}>Upload</Button>
+
+            </div>
+
+            <Snackbar open={pasteSuccess} autoHideDuration={3000}>
+                <Alert severity="success">Successfully uploaded the paste!</Alert>
+            </Snackbar>
+        </div >
+
+
+    )
+
+}
+export const TextStyled = styled(TextField)(({ theme }) => ({
+    color: '#fff',
+}))
