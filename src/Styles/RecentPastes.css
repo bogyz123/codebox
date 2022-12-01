@@ -1,9 +1,0 @@
-
-#result-container{
-    display: flex;
-    flex-direction: column;
-    row-gap: 5px;
-    overflow: scroll;
-    padding: 5px;
-    max-height: 450px;
-}
