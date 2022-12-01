@@ -13,6 +13,7 @@ import PasteTemplate from "./components/PasteTemplate";
 import Profile from "./components/Profile";
 import Register from "./components/Register";
 import { setIsLoggedIn, setNickname, setUserData, setUserObject } from "./components/UserSlice";
+import "./styles/Global.css";
 
 
 

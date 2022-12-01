@@ -1,0 +1,29 @@
+#profile-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    background-color: rgb(40, 40, 40);
+    font-family: 'Roboto Condensed';
+    font-size: 18px;
+}
+
+#profile-container {
+
+    display: flex;
+    flex-direction: column;
+    column-gap: 15px;
+    align-items: center;
+
+}
+#paste-list{
+   display: flex;
+   flex-direction: column;
+}
+
+#profile-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 5px;
+
+}

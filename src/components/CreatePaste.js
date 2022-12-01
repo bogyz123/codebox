@@ -1,8 +1,7 @@
 import styled from "@emotion/styled";
 import { Alert, Button, Input, Paper, Snackbar, TextField } from "@mui/material";
-import { current } from "@reduxjs/toolkit";
 import { getAuth } from "firebase/auth";
-import { addDoc, collection, doc, Firestore, getDoc, query, serverTimestamp, setDoc, where } from "firebase/firestore";
+import { addDoc, doc, serverTimestamp, setDoc, where } from "firebase/firestore";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../styles/CreatePaste.css";
@@ -34,9 +33,16 @@ export default function CreatePaste() { // Component that handles creation of th
 
 
     }))
-    const robotoCondensedFont = 'Roboto Condensed, sans-serif';
+    const kanitFont = 'Kanit, sans-serif';
+    const inputProps = {
+
+        style: {
+            fontFamily: kanitFont,
+            color: '#fff',
+        },
+        maxLength: 14
+    }
     // #endregion
-    const dispatch = useDispatch();
     const auth = getAuth();
     const [title, setTitle] = useState();
     const [author, setAuthor] = useState();
@@ -93,9 +99,9 @@ export default function CreatePaste() { // Component that handles creation of th
 
             <h3 id='header'>Create a new paste</h3>
             <div id='paste-info'>
-                <TextField size='small' inputProps={{ style: { color: '#fff', fontFamily: robotoCondensedFont} }} InputLabelProps={{ style: { color: 'grey', fontFamily: robotoCondensedFont } }} color='warning' required label="Author" onChange={(e) => setAuthor(e.target.value)}></TextField>
-                <TextField size='small' inputProps={{ style: { color: '#fff', fontFamily: robotoCondensedFont } }} InputLabelProps={{ style: { color: 'grey', fontFamily: robotoCondensedFont } }} label="Title" required color='warning' onChange={(e) => setTitle(e.target.value)}></TextField>
-                <TextField size='small' inputProps={{ style: { color: '#fff', fontFamily: robotoCondensedFont } }} InputLabelProps={{ style: { color: 'grey', fontFamily: robotoCondensedFont } }} label="Password" color='warning' type='password' onChange={(e) => setPassword(e.target.value)}></TextField>
+                <TextField size='small' inputProps={inputProps} InputLabelProps={{ style: { color: 'grey', fontFamily: kanitFont } }} color='warning' required label="Author" onChange={(e) => setAuthor(e.target.value)}></TextField>
+                <TextField size='small' inputProps={inputProps} InputLabelProps={{ style: { color: 'grey', fontFamily: kanitFont } }} label="Title" required color='warning' onChange={(e) => setTitle(e.target.value)}></TextField>
+                <TextField size='small' inputProps={inputProps} InputLabelProps={{ style: { color: 'grey', fontFamily: kanitFont } }} label="Password" color='warning' type='password' onChange={(e) => setPassword(e.target.value)}></TextField>
                 <div id='status'>
                     {pasteError && <Alert severity="warning">Please input all the fields.</Alert>}
                     {pasteSuccess && <>

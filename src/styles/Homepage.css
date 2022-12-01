@@ -1,0 +1,14 @@
+#homepage {
+    background-color: rgb(13, 0, 24);
+    height: 94.5vh;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    overflow: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}

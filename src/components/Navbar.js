@@ -1,4 +1,4 @@
-import { Button, Menu, MenuItem, Typography } from "@mui/material";
+import { Button, Menu, MenuItem, TextField, Typography } from "@mui/material";
 import { Container, Stack } from "@mui/system";
 import { getAuth, signOut } from "firebase/auth";
 import { useSelector } from "react-redux";
@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import React from "react";
 import { collection, getDocs, query } from "firebase/firestore";
 import { database } from "./Connection";
+import { Logout, TextFields } from "@mui/icons-material";
 
 
 export default function Navbar() {
@@ -36,6 +37,7 @@ export default function Navbar() {
     };
    
 
+
     const handleMenu = (action) => {
         switch (action) {
             case 'profile': {
@@ -44,7 +46,7 @@ export default function Navbar() {
                 break;
             }
             case 'mypastes': {
-                nav(`users/${nickname}pastes`);
+                nav(`/allpastes`);
                 handleClose();
                 break;
             }
@@ -55,7 +57,7 @@ export default function Navbar() {
             }
         }
     }
-   
+
 
     return (
         <>
@@ -98,14 +100,14 @@ export default function Navbar() {
                 </Link>}
 
                 <div id='searchbar-container'>
-                    <TextFieldStyled color='error' size='small' label='Search for pastes' labelColor='#fff' ff='Roboto Condensed'  w='25vw'></TextFieldStyled>
-                    
+                    <TextFieldStyled color='error' size='small'  label='Search for pastes (WORK IN PROGRESS)' labelColor='#fff' ff='Kanit, sans-serif' w='25vw'></TextFieldStyled>
+
                 </div>
 
 
 
 
-                {log ? <><Button variant='contained' color='error' size='small' onClick={() => logout()}>Log Out</Button> {<Link className='link'>{nickname}</Link>} </> : <div id='navbar'>
+                {log ? <><Button variant='contained' color='error' size='small' onClick={() => logout()}><Logout /></Button> {<Link className='link'>{nickname}</Link>} </> : <div id='navbar'>
                     <Link className="link" to='/login'>
                         <Typography variant='h6' sx={{ cursor: 'pointer', fontFamily: 'Bebas Neue' }} >Login</Typography>
                     </Link>

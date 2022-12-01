@@ -7,17 +7,23 @@ export default function PasteTable({ title, author, createdAt, pasteId }) {
         [`&.${tableCellClasses.head}`]: {
             backgroundColor: 'rgb(18,18,18)',
             color:'#fff',
+            fontFamily: "Kanit, sans-serif", 
+            fontSize:'1rem',
+            textOverflow: 'ellipsis'
            
         },
         [`&.${tableCellClasses.body}`]: {
             backgroundColor:'rgb(28,28,28)',
-            color:'#fff',borderRadius:'0px'
+            color:'#fff',borderRadius:'0px',
+            fontFamily: "Kanit, sans-serif", 
+            fontSize:'1.1rem',
+            textOverflow: 'ellipsis'
         }
     }))
     
     return (
 
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} sx={{borderRadius:'0'}}>
             <Table sx={{ minWidth: 500 }} size="small"> 
                 <TableHead>
                     <TableRow>
@@ -36,7 +42,7 @@ export default function PasteTable({ title, author, createdAt, pasteId }) {
                         <TableCellSTYLED component="th" scope="row">
                             {pasteId}
                         </TableCellSTYLED>
-                        <TableCellSTYLED align="right">{title}</TableCellSTYLED>
+                        <TableCellSTYLED align="right" wordWrap='break-word' whiteSpace='normal'>{title}</TableCellSTYLED>
                         <TableCellSTYLED align="right">{author}</TableCellSTYLED>
                       
 

@@ -1,0 +1,7 @@
+#paste-container {
+    display: flex;
+    background-color: rgb(40,40,40);
+    flex-direction: column;
+    font-family: 'Roboto Condensed';
+    border-bottom: 1px solid rgb(194, 14, 14);
+}
