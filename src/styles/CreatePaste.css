@@ -1,0 +1,88 @@
+#container {
+    background-color: rgb(41, 40, 40);
+    color: #fff;
+    font-family: 'Bebas Neue';
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#paste-info {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+    column-gap: 5px;
+
+}
+
+#info {
+    background-color: rgb(54, 53, 53);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3.8rem;
+    position: relative;
+    column-gap: 1rem;
+    width: 100%;
+}
+
+#paste-box {
+    background-color: rgb(41, 40, 40);
+    margin-top: 5px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1.2rem;
+    min-width: 95%;
+    min-height: 93%;
+    max-width: 99%;
+    max-height: 99%;
+    padding: 10px 17px 17px 10px;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-shadow: 0px 1px 20px 0px rgba(255, 140, 0, 1);
+    -moz-box-shadow: 0px 1px 20px 0px rgba(255, 140, 0, 1);
+    box-shadow: 0px 1px 10px 0px rgba(255, 140, 0, 1);
+}
+
+#paste-box-container {
+    color: #fff;
+        background-color: 'rgb(32,32,32)';
+        padding: 15px 5px 15px 0px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        width: 99%;
+        justify-content: center;
+        align-items: center;
+}
+
+#select {
+    position: absolute;
+    right: 5px;
+}
+
+
+#side-controls {
+    display: flex;
+    align-items: center;
+
+}
+
+#header {
+    text-align: center;
+}
+#status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 5px;
+    
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');

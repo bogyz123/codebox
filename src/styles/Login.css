@@ -1,0 +1,74 @@
+.login-container {
+    background-color: rgb(32, 32, 32);
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.login-form {
+    background-color: rgb(28, 28, 28);
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.75);
+    height: fit-content;
+    color: #fff;
+    font-family: 'Roboto Condensed';
+    text-align: center;
+    padding:100px;
+
+}
+
+.login-form:hover {
+    animation-name: onHoverDiv;
+    animation-duration: .5s;
+    cursor: pointer;
+    animation-fill-mode: forwards;
+}
+
+.login-form:not(:hover) {
+    animation-name: onLeaveDiv;
+    animation-duration: .5s;
+    cursor: pointer;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes onHoverDiv {
+    from {
+        padding: 70px
+    }
+
+    to {
+        padding: 80px
+    }
+}
+
+@keyframes onLeaveDiv {
+
+    from {
+        padding: 80px
+    }
+
+    to {
+        padding: 70px
+    }
+}
+
+#stack {
+    margin-top: 5px;
+}
+
+.link {
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Roboto Condensed';
+}
+@media screen and (max-width: 780px) {
+    .login-form {
+        width: 92%;
+    }
+}
