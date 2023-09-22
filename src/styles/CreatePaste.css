@@ -17,6 +17,7 @@
     justify-content: center;
     margin-bottom: 5px;
     column-gap: 5px;
+    padding-inline:1rem;
 
 }
 
@@ -81,7 +82,12 @@
     align-items: center;
     justify-content: center;
     column-gap: 5px;
-    
+    width: 80%;
+    max-width: 690px;
+    margin: 0 auto;
+}
+#status * {
+    width: 100%;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');

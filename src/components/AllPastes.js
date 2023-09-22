@@ -30,25 +30,22 @@ export default function AllPastes() { // When user requests their own list of pa
     const [hasNoPastes, setHasNoPastes] = useState();
     useEffect(() => {
 
-        if (pastes == null || pastes == undefined) {
+        if (!pastes) {
             setHasNoPastes(true);
-
         }
         else {
             setHasNoPastes(false);
-
         }
 
     }, [])
 
     const removePaste = (index) => {
-        console.log('removepaste()');
         const paste = Object.keys(pastes)[index]; // Nalazi index od pastea koji smo kliknuli
-
+        var pasteId = pastes[paste].id;
         const toRemove = doc(database, "users", email); // Referenca ka dokumentu
 
         updateDoc(toRemove, {
-            [`pastes.${paste}`]: deleteField() // Trazi paste u dokumentu i brise ga
+            [`pastes.${pasteId}`]: deleteField() // Trazi paste u dokumentu i brise ga
         }).then(() => {
             deleteDoc(doc(database, "pastes", paste)).then(() => {
                 let ar = { ...pastes };
@@ -111,7 +108,7 @@ export default function AllPastes() { // When user requests their own list of pa
                                     <div id='paste-actions'>
                                         <div onClick={() => removePaste(index)}><Delete /></div>
                                         <div onClick={() => editPaste(OBJ.author, OBJ.title, OBJ.content, OBJ.name)}><Edit /></div>
-                                        <CopyToClipboard text={`localhost:3000/paste/${OBJ.name}`} onCopy={() => setCopied(true)}>
+                                        <CopyToClipboard text={`https://bogyz123.github.io/codebox/#/paste/${OBJ.name}`} onCopy={() => setCopied(true)}>
                                             <ContentCopy />
                                         </CopyToClipboard>
                                         <Dialog open={isDialogOpen} fullScreen>

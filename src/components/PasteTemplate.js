@@ -14,7 +14,7 @@ import { setIsLoading } from "./UserSlice";
 export default function PasteTemplate() {
     const [docExists, setDocExists] = useState(true);
     const [data, setData] = useState({});
-    const [password, setPassword] = useState("x");
+    const [password, setPassword] = useState(null);
     const [enteredPassword, setEnteredPassword] = useState();
     const [error, setError] = useState(false);
     const { pasteID } = useParams();
@@ -31,8 +31,7 @@ export default function PasteTemplate() {
                 setPassword(res.data("password"));
             }
             else {
-                setPassword(undefined);
-
+                setPassword(null);
             }
             setData({ ...res.data() });
 
@@ -41,17 +40,12 @@ export default function PasteTemplate() {
     }, [])
 
     const submitPassword = () => {
-
-        console.log(password.password);
         if (enteredPassword != password.password) {
             setError(true);
             return;
         }
-        else {
             setError(false);
             setPassword(null);
-            return;
-        }
     }
     return (
         <>
@@ -59,7 +53,7 @@ export default function PasteTemplate() {
                 <StyledAlert severity="error">This paste does not exist.</StyledAlert>
                 :
                 <>
-                    {password != undefined ?
+                    {password != null ?
                         <div className='content-container center'>
                             <p>THIS PASTE IS <span style={{ color: 'crimson' }}>LOCKED</span> <br /> <span style={{ fontSize: '0.7rem' }}>ENTER PASSWORD TO UNLOCK</span></p>
 
@@ -77,7 +71,7 @@ export default function PasteTemplate() {
                                 <p id='header'>CONTENT</p>
                                 <div id='content'>
                                     {
-                                        data.content.split("\n").map((line, i) => (
+                                        data.content && data.content.split("\n").map((line, i) => (
                                             <div className="flex centerX centerY centerX" key={i}>
                                                 <span style={{ color: '#ccc', fontSize: '.7rem' }}>{i + 1}</span> <span style={{ marginLeft: '10px' }}>{line}</span>
                                             </div>

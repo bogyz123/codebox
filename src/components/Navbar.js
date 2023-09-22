@@ -48,6 +48,9 @@ export default function Navbar() {
                 handleClose();
                 break;
             }
+            case '/': {
+                nav("/");
+            }
         }
     }
 
@@ -75,6 +78,7 @@ export default function Navbar() {
                     onClose={handleClose}
 
                 >
+                <MenuItem onClick={() => handleMenuReducer("/")}>Homepage</MenuItem>
                     <MenuItem onClick={() => handleMenuReducer('profile')}>Profile</MenuItem>
                     <MenuItem onClick={() => handleMenuReducer('mypastes')}>My Pastes</MenuItem>
                     <MenuItem onClick={() => handleMenuReducer('logout')}>Logout</MenuItem>

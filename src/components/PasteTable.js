@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { Paper, Table, TableBody, TableCell, tableCellClasses, TableContainer, TableHead, TableRow } from "@mui/material";
 
-export default function PasteTable({ title, author, createdAt, pasteId }) {
+export default function PasteTable({ title, author, pasteId }) {
     const TableCellSTYLED = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
             backgroundColor: 'rgb(18,18,18)',

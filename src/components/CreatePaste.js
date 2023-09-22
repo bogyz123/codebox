@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { Alert, Button, Snackbar, TextField } from "@mui/material";
 import { getAuth } from "firebase/auth";
-import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/CreatePaste.css";
@@ -83,16 +83,13 @@ export default function CreatePaste() {
                 <TextField size='small' inputProps={inputProps} InputLabelProps={{ style: { color: 'grey', fontFamily: kanitFont } }} color='warning' required label="Author" onChange={(e) => setAuthor(e.target.value)}></TextField>
                 <TextField size='small' inputProps={inputProps} InputLabelProps={{ style: { color: 'grey', fontFamily: kanitFont } }} label="Title" required color='warning' onChange={(e) => setTitle(e.target.value)}></TextField>
                 <TextField size='small' inputProps={inputProps} InputLabelProps={{ style: { color: 'grey', fontFamily: kanitFont } }} label="Password" color='warning' type='password' onChange={(e) => setPassword(e.target.value)}></TextField>
-                <div id='status'>
+            </div>
+            <div id='status'>
                     {pasteError && <Alert severity="warning">Please input all the fields.</Alert>}
                     {pasteSuccess && <>
                         <Button variant='contained' color='success' onClick={() => nav(`/paste/${link}`, { replace: true })}>Open Link</Button>
                     </>}
                 </div>
-
-
-
-            </div>
 
             <div id='paste-box-container'>
 
