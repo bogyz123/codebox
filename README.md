@@ -1,6 +1,7 @@
 # Codebox
 
-is a a text/code sharing website. It serves a similar purpose as Pastebin, providing a platform for users to upload, edit or delete their paste.
+is a a text/code sharing website. It serves a similar purpose as Pastebin, providing a platform for users to upload, edit or delete their paste. 
+(Abandoned)
 
 
 
